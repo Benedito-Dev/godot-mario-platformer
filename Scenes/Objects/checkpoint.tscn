@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b584owpgo8i0m"]
+
+[ext_resource type="Script" uid="uid://bip7xhx6wmq3w" path="res://Scenes/Objects/checkpoint.gd" id="1_cwjgy"]
+[ext_resource type="Texture2D" uid="uid://bcjgix8grehdu" path="res://Sprites/Objects/bandeira-bowser.png" id="1_kkv1f"]
+[ext_resource type="Texture2D" uid="uid://brr2dl655fb5c" path="res://Sprites/Objects/bandeira.png" id="2_cwjgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkv1f"]
+size = Vector2(24, 24)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_cwjgy")
+
+[node name="Flag-Bowser" type="Sprite2D" parent="."]
+texture = ExtResource("1_kkv1f")
+
+[node name="Flag-Mario" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_cwjgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kkv1f")

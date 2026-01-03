@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=4 uid="uid://bedof8fwx835d"]
+
+[ext_resource type="Texture2D" uid="uid://y1k7w776mub7" path="res://Sprites/Backgrounds/fase1backstage.png" id="1_1rqri"]
+[ext_resource type="Script" uid="uid://dr8qupnay8sb" path="res://Scripts/game.gd" id="1_llwsu"]
+[ext_resource type="PackedScene" uid="uid://d2i54w68ccsle" path="res://Scenes/Player/Mario.tscn" id="2_infrq"]
+[ext_resource type="Script" uid="uid://dwmx47idwx1yj" path="res://Scripts/Objects/camera_2d.gd" id="3_1rqri"]
+[ext_resource type="Texture2D" uid="uid://elsoefqcupx5" path="res://Sprites/Tiles/brokin.png" id="3_i8622"]
+[ext_resource type="Texture2D" uid="uid://dmewl040yew6a" path="res://Sprites/Tiles/brokincompranta.png" id="4_1rqri"]
+[ext_resource type="AudioStream" uid="uid://bqom73r7476do" path="res://Sounds/Musics/Theme Song.mp3" id="6_gt187"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt187"]
+texture = ExtResource("3_i8622")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llwsu"]
+texture = ExtResource("4_1rqri")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_khy0e"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_gt187")
+sources/1 = SubResource("TileSetAtlasSource_llwsu")
+
+[node name="Fase1" type="Node2D"]
+script = ExtResource("1_llwsu")
+
+[node name="ParallaxBackgroud" type="Node2D" parent="."]
+texture_filter = 1
+texture_repeat = 3
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackgroud"]
+texture_filter = 1
+texture_repeat = 2
+repeat_size = Vector2(250, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackgroud/Parallax2D"]
+texture_repeat = 2
+position = Vector2(160, 120)
+texture = ExtResource("1_1rqri")
+
+[node name="Mario" parent="." instance=ExtResource("2_infrq")]
+position = Vector2(84, 199)
+
+[node name="Camera2D" type="Camera2D" parent="Mario"]
+offset = Vector2(0, -80)
+ignore_rotation = false
+drag_horizontal_enabled = true
+drag_top_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("3_1rqri")
+
+[node name="Chão" type="TileMapLayer" parent="."]
+position = Vector2(0, 22)
+tile_map_data = PackedByteArray("AAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAARAAwAAAAAAAAAAAATAAwAAAAAAAAAAAASAAwAAAAAAAAAAAATAA0AAAAAAAAAAAASAA0AAAAAAAAAAAARAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAADAA0AAAAAAAAAAAACAA0AAAAAAAAAAAABAA0AAAAAAAAAAAAAAA0AAAAAAAAAAAAFAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAVAAwAAAAAAAAAAAAVAA0AAAAAAAAAAAAWAAwAAAAAAAAAAAAWAA0AAAAAAAAAAAAXAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAYAA0AAAAAAAAAAAAZAA0AAAAAAAAAAAAaAA0AAAAAAAAAAAAbAA0AAAAAAAAAAAAcAA0AAAAAAAAAAAAdAA0AAAAAAAAAAAAeAA0AAAAAAAAAAAAeAAwAAAAAAAAAAAAfAAwAAAAAAAAAAAAgAAwAAAAAAAAAAAAgAA0AAAAAAAAAAAAfAA0AAAAAAAAAAAAdAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAD//w0AAAAAAAAAAAD+/w0AAAAAAAAAAAD9/w0AAAAAAAAAAAD8/w0AAAAAAAAAAAD7/w0AAAAAAAAAAAD6/w0AAAAAAAAAAAD5/w0AAAAAAAAAAAD4/w0AAAAAAAAAAAD3/w0AAAAAAAAAAAD2/w0AAAAAAAAAAAD1/w0AAAAAAAAAAAD0/w0AAAAAAAAAAADz/w0AAAAAAAAAAADy/w0AAAAAAAAAAADx/w0AAAAAAAAAAADw/w0AAAAAAAAAAADv/w0AAAAAAAAAAADu/w0AAAAAAAAAAADt/w0AAAAAAAAAAADs/w0AAAAAAAAAAADr/w0AAAAAAAAAAADq/w0AAAAAAAAAAADp/w0AAAAAAAAAAADo/w0AAAAAAAAAAADo/wwAAAAAAAAAAADp/wwAAAAAAAAAAADq/wwAAAAAAAAAAADr/wwAAAAAAAAAAADs/wwAAAAAAAAAAADt/wwAAAAAAAAAAADu/wwAAAAAAAAAAADv/wwAAAAAAAAAAADw/wwAAAAAAAAAAADx/wwAAAAAAAAAAADy/wwAAAAAAAAAAADz/wwAAAAAAAAAAAD0/wwAAAAAAAAAAAD1/wwAAAAAAAAAAAD2/wwAAAAAAAAAAAD3/wwAAAAAAAAAAAD4/wwAAAAAAAAAAAD5/wwAAAAAAAAAAAD6/wwAAAAAAAAAAAD7/wwAAAAAAAAAAAD8/wwAAAAAAAAAAAD9/wwAAAAAAAAAAAD+/wwAAAAAAAAAAAD//wwAAAAAAAAAAADn/w0AAAAAAAAAAADm/w0AAAAAAAAAAADl/w0AAAAAAAAAAADk/w0AAAAAAAAAAADj/w0AAAAAAAAAAADi/w0AAAAAAAAAAADi/wwAAAAAAAAAAADj/wwAAAAAAAAAAADk/wwAAAAAAAAAAADl/wwAAAAAAAAAAADm/wwAAAAAAAAAAADn/wwAAAAAAAAAAAAhAA0AAAAAAAAAAAAiAA0AAAAAAAAAAAAjAA0AAAAAAAAAAAAkAA0AAAAAAAAAAAAlAA0AAAAAAAAAAAAmAA0AAAAAAAAAAAAnAA0AAAAAAAAAAAAoAA0AAAAAAAAAAAApAA0AAAAAAAAAAAAqAA0AAAAAAAAAAAArAA0AAAAAAAAAAAAsAA0AAAAAAAAAAAAtAA0AAAAAAAAAAAAuAA0AAAAAAAAAAAAuAAwAAAAAAAAAAAAtAAwAAAAAAAAAAAAsAAwAAAAAAAAAAAArAAwAAAAAAAAAAAAqAAwAAAAAAAAAAAApAAwAAAAAAAAAAAAoAAwAAAAAAAAAAAAnAAwAAAAAAAAAAAAmAAwAAAAAAAAAAAAlAAwAAAAAAAAAAAAkAAwAAAAAAAAAAAAjAAwAAAAAAAAAAAAiAAwAAAAAAAAAAAAhAAwAAAAAAAAAAAAvAA0AAAAAAAAAAAAwAA0AAAAAAAAAAAAxAA0AAAAAAAAAAAAxAAwAAAAAAAAAAAAwAAwAAAAAAAAAAAAvAAwAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_khy0e")
+
+[node name="ThemeSong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gt187")
+volume_db = 2.019
+autoplay = true
+
+[connection signal="finished" from="ThemeSong" to="." method="_on_theme_song_finished"]

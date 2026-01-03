@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://cit33gs6tqceb"]
+
+[ext_resource type="Script" uid="uid://c6r3igah2ln5v" path="res://Scripts/Enemies/goomba.gd" id="1_kh66b"]
+[ext_resource type="Texture2D" uid="uid://bpowiylchc344" path="res://Sprites/Enemies/goomba-1.png" id="2_kh66b"]
+[ext_resource type="AudioStream" uid="uid://dpwt6c0y2jvlt" path="res://Sounds/Effects/smb_kick.mp3" id="3_87vcy"]
+[ext_resource type="Texture2D" uid="uid://who3cc58xsa3" path="res://Sprites/Enemies/goomabmerreu.png" id="3_ei57l"]
+
+[sub_resource type="Animation" id="Animation_kh66b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Stomped:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gb1sd"]
+resource_name = "Stomp"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Stomped:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_cot0q"]
+resource_name = "Walking"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.30079368, 0.4, 0.5, 0.60135657, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87vcy"]
+_data = {
+&"RESET": SubResource("Animation_kh66b"),
+&"Stomp": SubResource("Animation_gb1sd"),
+&"Walking": SubResource("Animation_cot0q")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei57l"]
+size = Vector2(16, 16)
+
+[node name="Goomba" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_kh66b")
+
+[node name="Goomba" type="Sprite2D" parent="."]
+texture = ExtResource("2_kh66b")
+hframes = 13
+
+[node name="Stomped" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_ei57l")
+hframes = 3
+
+[node name="AnimationGoomba" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Goomba")
+libraries = {
+&"": SubResource("AnimationLibrary_87vcy")
+}
+speed_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ei57l")
+
+[node name="Stum_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_87vcy")
+volume_db = 1.0
+
+[connection signal="animation_finished" from="AnimationGoomba" to="." method="_on_animation_goomba_animation_finished"]
