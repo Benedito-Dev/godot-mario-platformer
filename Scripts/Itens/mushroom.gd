@@ -1,22 +1,30 @@
 extends CharacterBody2D
 
-@export var speed := 80.0
+@export var speed := 60.0
 
 var direction := 1
+var type = Game.PowerUpType.ONE_UP_MUSHROOM
+@onready var animMushroom = $AnimationMushroom
+
+func _ready():
+	animMushroom.play("jump")
 
 func _physics_process(delta):
-	# Gravidade
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Movimento horizontal
 	velocity.x = direction * speed
-
 	move_and_slide()
 
-	# Se bater em parede, inverte
 	if is_on_wall():
 		direction *= -1
 
-func set_direction(new_direction: int):
-	direction = new_direction
+func _on_area_power_up_body_entered(body):
+	if body.is_in_group("player"):
+
+		AudioManager.play_sfx("powerup")
+
+		# Agora chama diretamente o Game ao invés do Mario
+		Game.mario_collect_powerup(type)
+
+		queue_free()

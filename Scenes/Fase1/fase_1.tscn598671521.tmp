@@ -1,0 +1,169 @@
+[gd_scene load_steps=22 format=4 uid="uid://bedof8fwx835d"]
+
+[ext_resource type="Script" uid="uid://dr8qupnay8sb" path="res://Scripts/game.gd" id="1_llwsu"]
+[ext_resource type="PackedScene" uid="uid://d2i54w68ccsle" path="res://Scenes/Player/Mario.tscn" id="2_infrq"]
+[ext_resource type="PackedScene" uid="uid://bmx12c6q8rc3j" path="res://Scenes/Fase1/background_ceu.tscn" id="2_llwsu"]
+[ext_resource type="Script" uid="uid://dwmx47idwx1yj" path="res://Scripts/Objects/camera_2d.gd" id="3_1rqri"]
+[ext_resource type="Texture2D" uid="uid://l5igikiy4qwq" path="res://Sprites/Backgrounds/montanhas-1.png" id="3_d6sag"]
+[ext_resource type="Texture2D" uid="uid://elsoefqcupx5" path="res://Sprites/Tiles/brokin.png" id="3_i8622"]
+[ext_resource type="Texture2D" uid="uid://dmewl040yew6a" path="res://Sprites/Tiles/brokincompranta.png" id="4_1rqri"]
+[ext_resource type="AudioStream" uid="uid://bqom73r7476do" path="res://Sounds/Musics/Theme Song.mp3" id="6_gt187"]
+[ext_resource type="Texture2D" uid="uid://5pxf7dx60y54" path="res://Sprites/Objects/cano.png" id="8_vx8wq"]
+[ext_resource type="PackedScene" uid="uid://bd233qandwb04" path="res://Scenes/Objects/interrogação.tscn" id="9_be4ju"]
+[ext_resource type="PackedScene" uid="uid://b1ndrvk0qlhuf" path="res://Scenes/Objects/block.tscn" id="10_ufwxg"]
+[ext_resource type="PackedScene" uid="uid://bj8e7ltw53ggw" path="res://Scenes/Objects/pipe_entrance.tscn" id="11_d6sag"]
+[ext_resource type="Script" uid="uid://cr1gi1hbmi4qh" path="res://HUD/hud.gd" id="12_1l40m"]
+[ext_resource type="PackedScene" uid="uid://cit33gs6tqceb" path="res://Scenes/Enemies/goomba.tscn" id="12_2cenc"]
+[ext_resource type="FontFile" uid="uid://cvpk6kr8gkipf" path="res://HUD/font/smbfont.ttf" id="12_e56ce"]
+[ext_resource type="Texture2D" uid="uid://c3umrgbm8ct07" path="res://HUD/Elements/coin.png" id="13_1l40m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt187"]
+texture = ExtResource("3_i8622")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_llwsu"]
+texture = ExtResource("4_1rqri")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jm1wp"]
+texture = ExtResource("8_vx8wq")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.01945, -8, 8, -8, 8, 8, -5.9900074, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6.019451, -8, 5.8966045, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.797099, 8, -5.6484556, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.797099, 8, -5.6484556, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.01945, -8, 8, -8, 8, 8, -5.9900074, 8)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6.019451, -8, 5.8966045, 8, -8, 8)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.01945, -8, 8, -8, 8, 8, -5.9900074, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 6.019451, -8, 5.8966045, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_khy0e"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_gt187")
+sources/1 = SubResource("TileSetAtlasSource_llwsu")
+sources/4 = SubResource("TileSetAtlasSource_jm1wp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_d6sag"]
+font = ExtResource("12_e56ce")
+font_size = 14
+
+[node name="Fase1" type="Node2D"]
+script = ExtResource("1_llwsu")
+
+[node name="Word" type="Node2D" parent="."]
+
+[node name="ParallaxBackgroud" type="Node2D" parent="Word"]
+texture_filter = 1
+texture_repeat = 3
+
+[node name="Parallax2D" type="Parallax2D" parent="Word/ParallaxBackgroud"]
+texture_filter = 1
+texture_repeat = 2
+repeat_size = Vector2(240, 0)
+autoscroll = Vector2(-30, 0)
+repeat_times = 3
+
+[node name="BackgroundCeu" parent="Word/ParallaxBackgroud/Parallax2D" instance=ExtResource("2_llwsu")]
+position = Vector2(0, -1)
+
+[node name="Montanhas" type="Parallax2D" parent="Word/ParallaxBackgroud"]
+scroll_offset = Vector2(-31, 140)
+repeat_size = Vector2(213.77, 0)
+repeat_times = 3
+
+[node name="Montanhas2" type="Sprite2D" parent="Word/ParallaxBackgroud/Montanhas"]
+position = Vector2(39, -20)
+texture = ExtResource("3_d6sag")
+
+[node name="Mario" parent="Word" instance=ExtResource("2_infrq")]
+position = Vector2(46, 201)
+
+[node name="Chão" type="TileMapLayer" parent="Word"]
+position = Vector2(0, 22)
+tile_map_data = PackedByteArray("AAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAEAAwAAQAAAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAJAAwAAQAAAAAAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAQAAAAAAAAAPAAwAAAAAAAAAAAARAAwAAAAAAAAAAAATAAwAAQAAAAAAAAASAAwAAAAAAAAAAAATAA0AAAAAAAAAAAASAA0AAAAAAAAAAAARAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAADAA0AAAAAAAAAAAACAA0AAAAAAAAAAAABAA0AAAAAAAAAAAAAAA0AAAAAAAAAAAAFAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAVAAwAAAAAAAAAAAAVAA0AAAAAAAAAAAAWAAwAAAAAAAAAAAAWAA0AAAAAAAAAAAAXAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAYAA0AAAAAAAAAAAAZAA0AAAAAAAAAAAAaAA0AAAAAAAAAAAAbAA0AAAAAAAAAAAAcAA0AAAAAAAAAAAAdAA0AAAAAAAAAAAAeAA0AAAAAAAAAAAAeAAwAAAAAAAAAAAAfAAwAAAAAAAAAAAAgAAwAAAAAAAAAAAAgAA0AAAAAAAAAAAAfAA0AAAAAAAAAAAAdAAwAAQAAAAAAAAAcAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAYAAwAAQAAAAAAAAD//w0AAAAAAAAAAAD+/w0AAAAAAAAAAAD9/w0AAAAAAAAAAAD8/w0AAAAAAAAAAAD7/w0AAAAAAAAAAAD6/w0AAAAAAAAAAAD5/w0AAAAAAAAAAAD4/w0AAAAAAAAAAAD3/w0AAAAAAAAAAAD2/w0AAAAAAAAAAAD1/w0AAAAAAAAAAAD0/w0AAAAAAAAAAADz/w0AAAAAAAAAAADy/w0AAAAAAAAAAADx/w0AAAAAAAAAAADw/w0AAAAAAAAAAADv/w0AAAAAAAAAAADu/w0AAAAAAAAAAADt/w0AAAAAAAAAAADs/w0AAAAAAAAAAADr/w0AAAAAAAAAAADq/w0AAAAAAAAAAADp/w0AAAAAAAAAAADo/w0AAAAAAAAAAADo/wwAAQAAAAAAAADp/wwAAAAAAAAAAADq/wwAAAAAAAAAAADr/wwAAAAAAAAAAADs/wwAAAAAAAAAAADt/wwAAQAAAAAAAADu/wwAAAAAAAAAAADv/wwAAAAAAAAAAADw/wwAAAAAAAAAAADx/wwAAAAAAAAAAADy/wwAAQAAAAAAAADz/wwAAAAAAAAAAAD0/wwAAAAAAAAAAAD1/wwAAAAAAAAAAAD2/wwAAQAAAAAAAAD3/wwAAAAAAAAAAAD4/wwAAAAAAAAAAAD5/wwAAAAAAAAAAAD6/wwAAQAAAAAAAAD7/wwAAAAAAAAAAAD8/wwAAAAAAAAAAAD9/wwAAAAAAAAAAAD+/wwAAAAAAAAAAAD//wwAAQAAAAAAAADn/w0AAAAAAAAAAADm/w0AAAAAAAAAAADl/w0AAAAAAAAAAADk/w0AAAAAAAAAAADj/w0AAAAAAAAAAADi/w0AAAAAAAAAAADi/wwAAAAAAAAAAADj/wwAAQAAAAAAAADk/wwAAAAAAAAAAADl/wwAAAAAAAAAAADm/wwAAAAAAAAAAADn/wwAAAAAAAAAAAAhAA0AAAAAAAAAAAAiAA0AAAAAAAAAAAAjAA0AAAAAAAAAAAAkAA0AAAAAAAAAAAAlAA0AAAAAAAAAAAAmAA0AAAAAAAAAAAAnAA0AAAAAAAAAAAAoAA0AAAAAAAAAAAApAA0AAAAAAAAAAAAsAA0AAAAAAAAAAAAtAA0AAAAAAAAAAAAuAA0AAAAAAAAAAAAuAAwAAAAAAAAAAAAtAAwAAAAAAAAAAAAsAAwAAAAAAAAAAAApAAwAAAAAAAAAAAAoAAwAAAAAAAAAAAAnAAwAAQAAAAAAAAAmAAwAAAAAAAAAAAAlAAwAAAAAAAAAAAAkAAwAAAAAAAAAAAAjAAwAAAAAAAAAAAAiAAwAAQAAAAAAAAAhAAwAAAAAAAAAAAAvAA0AAAAAAAAAAAAwAA0AAAAAAAAAAAAxAA0AAAAAAAAAAAAxAAwAAAAAAAAAAAAwAAwAAAAAAAAAAAAvAAwAAAAAAAAAAADh/wwAAAAAAAAAAADh/w0AAAAAAAAAAADg/wwAAAAAAAAAAADg/w0AAAAAAAAAAAAyAAwAAAAAAAAAAAAzAAwAAAAAAAAAAAA0AAwAAAAAAAAAAAA1AAwAAAAAAAAAAAA2AAwAAAAAAAAAAAA3AAwAAAAAAAAAAAA4AAwAAAAAAAAAAAA5AAwAAAAAAAAAAAA6AAwAAAAAAAAAAAA7AAwAAAAAAAAAAAA8AAwAAAAAAAAAAAA9AAwAAAAAAAAAAAA+AAwAAAAAAAAAAAA/AAwAAAAAAAAAAAAyAA0AAAAAAAAAAAAzAA0AAAAAAAAAAAA0AA0AAAAAAAAAAAA1AA0AAAAAAAAAAAA2AA0AAAAAAAAAAAA3AA0AAAAAAAAAAAA4AA0AAAAAAAAAAAA5AA0AAAAAAAAAAABAAAwAAAAAAAAAAABAAA0AAAAAAAAAAAA/AA0AAAAAAAAAAAA+AA0AAAAAAAAAAAA9AA0AAAAAAAAAAAA8AA0AAAAAAAAAAAA7AA0AAAAAAAAAAAA6AA0AAAAAAAAAAABBAAwAAAAAAAAAAABCAAwAAAAAAAAAAABDAAwAAAAAAAAAAABEAAwAAAAAAAAAAABFAAwAAAAAAAAAAABGAAwAAAAAAAAAAABHAAwAAAAAAAAAAABIAAwAAAAAAAAAAABJAAwAAAAAAAAAAABKAAwAAAAAAAAAAABLAAwAAAAAAAAAAABMAAwAAAAAAAAAAABNAAwAAAAAAAAAAABOAAwAAAAAAAAAAABPAAwAAAAAAAAAAABQAAwAAAAAAAAAAABRAAwAAAAAAAAAAABSAAwAAAAAAAAAAABTAAwAAAAAAAAAAABUAAwAAAAAAAAAAABVAAwAAAAAAAAAAABWAAwAAAAAAAAAAABXAAwAAAAAAAAAAABYAAwAAAAAAAAAAABZAAwAAAAAAAAAAABBAA0AAAAAAAAAAABCAA0AAAAAAAAAAABDAA0AAAAAAAAAAABEAA0AAAAAAAAAAABFAA0AAAAAAAAAAABGAA0AAAAAAAAAAABHAA0AAAAAAAAAAABIAA0AAAAAAAAAAABJAA0AAAAAAAAAAABKAA0AAAAAAAAAAABLAA0AAAAAAAAAAABMAA0AAAAAAAAAAABNAA0AAAAAAAAAAABOAA0AAAAAAAAAAABPAA0AAAAAAAAAAABQAA0AAAAAAAAAAABRAA0AAAAAAAAAAABSAA0AAAAAAAAAAABTAA0AAAAAAAAAAABUAA0AAAAAAAAAAABVAA0AAAAAAAAAAABWAA0AAAAAAAAAAABXAA0AAAAAAAAAAABYAA0AAAAAAAAAAABZAA0AAAAAAAAAAAAUAAsABAAGAAAAAAAVAAsABAAHAAAAAAAUAAoABAAAAAAAAAAVAAoABAABAAAAAAAVAAkABAADAAAAAAAUAAkABAACAAAAAAANAAsABAAGAAAAAAAOAAsABAAHAAAAAAANAAoABAAEAAAAAAAOAAoABAAFAAAAAAANAAkABAAAAAAAAAAOAAkABAABAAAAAAANAAgABAACAAAAAAAOAAgABAADAAAAAAAQAAsABAAGAAAAAAARAAsABAAHAAAAAAAQAAoABAACAAAAAAARAAoABAADAAAAAAA=")
+tile_set = SubResource("TileSet_khy0e")
+
+[node name="Camera" type="Camera2D" parent="Word" node_paths=PackedStringArray("target")]
+position = Vector2(84, 199)
+offset = Vector2(0, -80)
+ignore_rotation = false
+drag_horizontal_enabled = true
+drag_top_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("3_1rqri")
+target = NodePath("../Mario")
+
+[node name="QuestionsBlocks" type="Node2D" parent="Word"]
+
+[node name="QuestionBlock" parent="Word/QuestionsBlocks" instance=ExtResource("9_be4ju")]
+position = Vector2(152, 158)
+item_type = 1
+
+[node name="Blocks" type="Node2D" parent="Word"]
+position = Vector2(0, 22)
+
+[node name="Block" parent="Word/Blocks" instance=ExtResource("10_ufwxg")]
+position = Vector2(136, 136)
+
+[node name="Block2" parent="Word/Blocks" instance=ExtResource("10_ufwxg")]
+position = Vector2(168, 136)
+
+[node name="Block3" parent="Word/Blocks" instance=ExtResource("10_ufwxg")]
+position = Vector2(184, 136)
+
+[node name="Block4" parent="Word/Blocks" instance=ExtResource("10_ufwxg")]
+position = Vector2(120, 136)
+
+[node name="PipesEntrances" type="Node2D" parent="Word"]
+
+[node name="Pipe_1" parent="Word/PipesEntrances" node_paths=PackedStringArray("linked_pipe") instance=ExtResource("11_d6sag")]
+position = Vector2(224, 157)
+linked_pipe = NodePath("../Pipe_2")
+
+[node name="Pipe_2" parent="Word/PipesEntrances" node_paths=PackedStringArray("linked_pipe") instance=ExtResource("11_d6sag")]
+position = Vector2(335, 173)
+linked_pipe = NodePath("../Pipe_1")
+
+[node name="Enemies" type="Node2D" parent="Word"]
+
+[node name="Goomba" parent="Word/Enemies" instance=ExtResource("12_2cenc")]
+position = Vector2(152, 142)
+
+[node name="Goomba2" parent="Word/Enemies" instance=ExtResource("12_2cenc")]
+position = Vector2(-87, 206)
+direction = 1
+
+[node name="CheckPoints" type="Node2D" parent="Word"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("12_1l40m")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 18.0
+offset_right = 68.0
+offset_bottom = 15.0
+text = "SCORE 000000"
+label_settings = SubResource("LabelSettings_d6sag")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+offset_left = 2.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("13_1l40m")
+
+[node name="ThemeSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_gt187")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="finished" from="ThemeSong" to="HUD" method="_on_theme_song_finished"]

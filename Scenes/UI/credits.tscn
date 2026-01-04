@@ -1,0 +1,156 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7cwpxbc0fp0i"]
+
+[ext_resource type="Script" uid="uid://cuxqpipgur0u2" path="res://Scripts/credits.gd" id="1_0x8y4"]
+[ext_resource type="FontFile" uid="uid://luc8yfwypftu" path="res://HUD/font/PressStart2P-Regular.ttf" id="2_gryuy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4ad4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" node_paths=PackedStringArray("text_node")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e4ad4")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("1_0x8y4")
+text_node = NodePath("MarginContainer/RichTextLabel")
+credits_time = 200.0
+margin_increment = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 240
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 240
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 1200)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_gryuy")
+theme_override_fonts/bold_font = ExtResource("2_gryuy")
+theme_override_fonts/bold_italics_font = ExtResource("2_gryuy")
+theme_override_fonts/italics_font = ExtResource("2_gryuy")
+theme_override_fonts/mono_font = ExtResource("2_gryuy")
+bbcode_enabled = true
+text = "[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=32]🎮 CRÉDITOS FINAIS[/font_size][/font]
+[/center]
+
+[font_size=16] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]UM JOGO FEITO COM[/font_size][/font]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]PAIXÃO, PIXELS E CAFÉ[/font_size][/font]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]☕[/font_size][/font]
+[/center]
+
+[font_size=32] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf]────────────────[/font][/center]
+
+[font_size=16] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]EQUIPE PRINCIPAL[/font_size][/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]🕹️ DIREÇÃO & PROGRAMAÇÃO[/font_size][/font]
+[font_size=8] [/font_size]
+[img=128x128]res://Sprites/Credits/Benedito.png[/img]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22][b]BENEDITO BITTENCOURT[/b][/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]Arquitetura de código e sistemas[/font_size][/font]
+[/center]
+
+[font_size=22] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]✦[/font_size][/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]🎨 DIREÇÃO DE ARTE[/font_size][/font]
+[font_size=8] [/font_size]
+[img=128x128]res://Sprites/Credits/Arthur.jpeg[/img]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22][b]ARTHUR ANCELMO[/b][/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]Identidade visual e conceito criativo[/font_size][/font]
+[/center]
+
+[font_size=22] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]✦[/font_size][/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]🖌️ GAME ARTIST[/font_size][/font]
+[font_size=8] [/font_size]
+[img=128x128]res://Sprites/Credits/Marlon.png[/img]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22][b]MARLON NOGUEIRA[/b][/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]Sprites, animações e arte do mundo[/font_size][/font]
+[/center]
+
+[font_size=22] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]✦[/font_size][/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]🧱 LEVEL DESIGN & ARTE[/font_size][/font]
+[font_size=8] [/font_size]
+[img=128x128]res://Sprites/Credits/Geraldo.png[/img]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22][b]GERALDO[/b][/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]Construção de fases e desafios[/font_size][/font]
+[/center]
+
+[font_size=32] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf]────────────────[/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]AGRADECIMENTOS[/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]A todos que acreditam em jogos[/font_size][/font]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]feitos com alma e coração[/font_size][/font]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]OBRIGADO POR APERTAR START![/font_size][/font]
+[/center]
+
+[font_size=32] [/font_size]
+
+[center][font=res://HUD/font/PressStart2P-Regular.ttf]────────────────[/font][/center]
+
+[font_size=22] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=32]⭐ OBRIGADO POR JOGAR! ⭐[/font_size][/font]
+[/center]
+
+[font_size=32] [/font_size]
+
+[center]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]© 2023 — FEITO PARA 320×240[/font_size][/font]
+[/center]
+
+[font_size=80] [/font_size]
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

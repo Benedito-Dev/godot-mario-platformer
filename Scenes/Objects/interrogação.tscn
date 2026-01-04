@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bd233qandwb04"]
+[gd_scene load_steps=9 format=3 uid="uid://bd233qandwb04"]
 
 [ext_resource type="Texture2D" uid="uid://crq7c55ptfhay" path="res://Sprites/Objects/interrogacao.png" id="1_rmm7u"]
 [ext_resource type="Script" uid="uid://dth8s4q5yj3c5" path="res://Scripts/Objects/interrogação.gd" id="1_y0pg0"]
-[ext_resource type="PackedScene" uid="uid://c045rskfe062l" path="res://Scenes/Itens/coin.tscn" id="2_0jnua"]
-[ext_resource type="AudioStream" uid="uid://dfmmxpcsc1iiu" path="res://Sounds/Effects/smb_coin.mp3" id="3_8grqy"]
 [ext_resource type="Texture2D" uid="uid://cfmrgp1ikyi5a" path="res://Sprites/Objects/dead_block.png" id="4_8grqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8grqy"]
@@ -90,7 +88,6 @@ _data = {
 
 [node name="QuestionBlock" type="StaticBody2D" groups=["question_block"]]
 script = ExtResource("1_y0pg0")
-coin_scene = ExtResource("2_0jnua")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rmm7u")
@@ -104,10 +101,6 @@ shape = SubResource("RectangleShape2D_8grqy")
 libraries = {
 &"": SubResource("AnimationLibrary_bb2vl")
 }
-
-[node name="Coin" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_8grqy")
-volume_db = 1.0
 
 [node name="dead" type="Sprite2D" parent="."]
 visible = false

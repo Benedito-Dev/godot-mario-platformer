@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://l5igikiy4qwq" path="res://Sprites/Backgrounds/montanhas-1.png" id="3_d6sag"]
 [ext_resource type="Texture2D" uid="uid://elsoefqcupx5" path="res://Sprites/Tiles/brokin.png" id="3_i8622"]
 [ext_resource type="Texture2D" uid="uid://dmewl040yew6a" path="res://Sprites/Tiles/brokincompranta.png" id="4_1rqri"]
-[ext_resource type="AudioStream" uid="uid://bqom73r7476do" path="res://Sounds/Musics/Theme Song.mp3" id="6_gt187"]
 [ext_resource type="Texture2D" uid="uid://5pxf7dx60y54" path="res://Sprites/Objects/cano.png" id="8_vx8wq"]
 [ext_resource type="PackedScene" uid="uid://bd233qandwb04" path="res://Scenes/Objects/interrogação.tscn" id="9_be4ju"]
 [ext_resource type="PackedScene" uid="uid://b1ndrvk0qlhuf" path="res://Scenes/Objects/block.tscn" id="10_ufwxg"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cit33gs6tqceb" path="res://Scenes/Enemies/goomba.tscn" id="12_2cenc"]
 [ext_resource type="FontFile" uid="uid://cvpk6kr8gkipf" path="res://HUD/font/smbfont.ttf" id="12_e56ce"]
 [ext_resource type="Texture2D" uid="uid://c3umrgbm8ct07" path="res://HUD/Elements/coin.png" id="13_1l40m"]
+[ext_resource type="PackedScene" uid="uid://b584owpgo8i0m" path="res://Scenes/Objects/checkpoint.tscn" id="13_rxhcr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt187"]
 texture = ExtResource("3_i8622")
@@ -107,6 +107,7 @@ target = NodePath("../Mario")
 
 [node name="QuestionBlock" parent="Word/QuestionsBlocks" instance=ExtResource("9_be4ju")]
 position = Vector2(152, 158)
+item_type = 1
 
 [node name="Blocks" type="Node2D" parent="Word"]
 position = Vector2(0, 22)
@@ -137,13 +138,15 @@ linked_pipe = NodePath("../Pipe_1")
 
 [node name="Goomba" parent="Word/Enemies" instance=ExtResource("12_2cenc")]
 position = Vector2(152, 142)
-direction = null
 
 [node name="Goomba2" parent="Word/Enemies" instance=ExtResource("12_2cenc")]
 position = Vector2(-87, 206)
 direction = 1
 
 [node name="CheckPoints" type="Node2D" parent="Word"]
+
+[node name="Area2D" parent="Word/CheckPoints" instance=ExtResource("13_rxhcr")]
+position = Vector2(188, 202)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("12_1l40m")
@@ -160,10 +163,3 @@ offset_left = 2.0
 offset_right = 16.0
 offset_bottom = 16.0
 texture = ExtResource("13_1l40m")
-
-[node name="ThemeSong" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_gt187")
-volume_db = -5.0
-autoplay = true
-
-[connection signal="finished" from="ThemeSong" to="HUD" method="_on_theme_song_finished"]

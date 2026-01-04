@@ -11,7 +11,6 @@ const SPEED := 20.0
 @onready var anim_goomba = $AnimationGoomba
 @onready var Goomba = $Goomba
 @onready var GoombaStomped = $Stomped
-@onready var StumSound = $Stum_sound
 
 # =======================
 # ESTADO
@@ -19,7 +18,7 @@ const SPEED := 20.0
 @export var direction := -1  # -1 = esquerda | 1 = direita
 
 func _ready() -> void:
-	anim_goomba.play("Walkings")
+	anim_goomba.play("Walking")
 	_update_flip()
 
 func _physics_process(delta: float) -> void:
@@ -57,13 +56,11 @@ func _update_flip() -> void:
 # STUM
 # =======================
 func stomped():
-	StumSound.play()
+	AudioManager.play_sfx("kick")
 	Goomba.visible = false
-	Goomba2.visible = false
 	GoombaStomped.flip_h = direction > 0
 	GoombaStomped.visible = true
 	anim_goomba.play("Stomp")
-	await StumSound.finished
 
 
 func _on_animation_goomba_animation_finished(anim_name: StringName) -> void:

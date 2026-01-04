@@ -4,7 +4,6 @@ enum ItemType { COIN, MUSHROOM }
 enum Direction { LEFT, RIGHT }
 
 @onready var anim = $AnimationPlayer
-@onready var SoundCoin = $Coin
 @onready var deadSprite = $dead
 @onready var is_dead = false
 @onready var iten_spawn: Marker2D = $iten_spawn
@@ -23,7 +22,7 @@ func hit():
 	if is_dead == true:
 		return
 	anim.play("hit")
-	SoundCoin.play()
+	AudioManager.play_sfx("coin")
 	
 	spawn_item()
 	

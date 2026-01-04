@@ -1,8 +1,5 @@
 extends StaticBody2D
 
-@onready var SoundBrake = $Brake
-
 func hit():
-	SoundBrake.play()
-	await SoundBrake.finished
+	AudioManager.play_sfx("block")
 	queue_free()

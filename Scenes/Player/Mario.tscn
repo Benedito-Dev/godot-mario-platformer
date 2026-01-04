@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2i54w68ccsle"]
+[gd_scene load_steps=14 format=3 uid="uid://d2i54w68ccsle"]
 
 [ext_resource type="Texture2D" uid="uid://cn3854gn0s7s" path="res://Sprites/Mario/idle/Mario0.png" id="1_4ycxt"]
 [ext_resource type="Script" uid="uid://cjh7lgps8bfnj" path="res://Scripts/Player/mario.gd" id="1_8lnxb"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cvie4w7bm5pko" path="res://Sprites/Mario/Mario_jump.png" id="4_s40cu"]
 [ext_resource type="Texture2D" uid="uid://dal04jruy1rpa" path="res://Sprites/Mario/run/mario_run.png" id="4_vpon7"]
 [ext_resource type="Texture2D" uid="uid://du8cdpooh7cda" path="res://Sprites/Mario/mario_crouched.png" id="5_n6yd7"]
-[ext_resource type="AudioStream" uid="uid://dpy6lomle6gts" path="res://Sounds/Musics/smb_mariodie.mp3" id="6_7bebr"]
-[ext_resource type="AudioStream" uid="uid://ce370f3ugjms7" path="res://Sounds/Effects/smb_pipe.mp3" id="6_7xow1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8lnxb"]
 size = Vector2(13.558, 25.8)
@@ -186,13 +184,6 @@ disabled = true
 libraries = {
 &"": SubResource("AnimationLibrary_7xow1")
 }
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_7bebr")
-
-[node name="PipeSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_7xow1")
-volume_db = 1.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false

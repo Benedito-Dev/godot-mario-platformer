@@ -1,10 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://cufm6ukhv1v2x"]
+[gd_scene load_steps=8 format=3 uid="uid://cufm6ukhv1v2x"]
 
 [ext_resource type="Script" uid="uid://bcy0h8tfv5fij" path="res://Scripts/Itens/mushroom.gd" id="1_4wnwc"]
-[ext_resource type="Texture2D" uid="uid://qdgm4ogfxxuo" path="res://Sprites/itens/mushroom.png" id="1_tslox"]
+[ext_resource type="Texture2D" uid="uid://uk47cjmn2f11" path="res://Sprites/itens/mushroom-1.png" id="2_4wnwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wnwc"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcp40"]
+size = Vector2(18, 18)
+
+[sub_resource type="Animation" id="Animation_4wnwc"]
+resource_name = "jump"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mushroom:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_lcp40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mushroom:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tx2v7"]
+_data = {
+&"RESET": SubResource("Animation_lcp40"),
+&"jump": SubResource("Animation_4wnwc")
+}
 
 [node name="Mushroom" type="CharacterBody2D"]
 collision_layer = 8
@@ -12,7 +53,20 @@ collision_mask = 5
 script = ExtResource("1_4wnwc")
 
 [node name="mushroom" type="Sprite2D" parent="."]
-texture = ExtResource("1_tslox")
+texture = ExtResource("2_4wnwc")
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4wnwc")
+
+[node name="Area_PowerUp" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_PowerUp"]
+shape = SubResource("RectangleShape2D_lcp40")
+
+[node name="AnimationMushroom" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tx2v7")
+}
+
+[connection signal="body_entered" from="Area_PowerUp" to="." method="_on_area_power_up_body_entered"]
