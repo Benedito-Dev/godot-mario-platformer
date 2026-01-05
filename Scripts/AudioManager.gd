@@ -23,7 +23,7 @@ func _ready():
 	# Carregar sons (adicione seus caminhos)
 	load_sounds()
 	
-	#play_music("level1")
+	play_music("level1")
 
 func load_sounds():
 	# SFX

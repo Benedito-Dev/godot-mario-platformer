@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dswwvbdm4to20"]
+
+[ext_resource type="PackedScene" uid="uid://bmx12c6q8rc3j" path="res://Scenes/Fase1/background_ceu.tscn" id="1_iwgee"]
+
+[node name="StartScreen" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="BackgroundCeu" parent="Background" instance=ExtResource("1_iwgee")]
