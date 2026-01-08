@@ -1,10 +1,784 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7cwpxbc0fp0i"]
+[gd_scene load_steps=24 format=3 uid="uid://c7cwpxbc0fp0i"]
 
 [ext_resource type="Script" uid="uid://cuxqpipgur0u2" path="res://Scripts/credits.gd" id="1_0x8y4"]
 [ext_resource type="FontFile" uid="uid://luc8yfwypftu" path="res://HUD/font/PressStart2P-Regular.ttf" id="2_gryuy"]
+[ext_resource type="Texture2D" uid="uid://deojyb7wik5j5" path="res://Sprites/Credits/Pixel-Arts/kiss_peach.png" id="3_lm48m"]
+[ext_resource type="Texture2D" uid="uid://kotcrwvso1pq" path="res://Sprites/Mario/wall_jump.png" id="4_k0d3f"]
+[ext_resource type="Texture2D" uid="uid://dal04jruy1rpa" path="res://Sprites/Mario/run/mario_run.png" id="5_1g7ho"]
+[ext_resource type="Texture2D" uid="uid://iyc3kdyw3hf1" path="res://Sprites/Credits/Pixel-Arts/Luigi.png" id="6_yvj1n"]
+[ext_resource type="Texture2D" uid="uid://dvo528glb0nuf" path="res://Sprites/Credits/Pixel-Arts/Sparkles.png" id="7_i8gny"]
+[ext_resource type="Texture2D" uid="uid://bb0frvvoy8yyx" path="res://Sprites/Credits/Pixel-Arts/kiss.png" id="8_i8gny"]
+[ext_resource type="Texture2D" uid="uid://brvplcknmkkoj" path="res://Sprites/Credits/Pixel-Arts/Pipper.png" id="9_kgcjs"]
+[ext_resource type="Texture2D" uid="uid://hip6hou4glct" path="res://Sprites/Credits/Pixel-Arts/Plant-piranha.png" id="9_oiyhp"]
+[ext_resource type="Texture2D" uid="uid://cla7mrc1xxh5f" path="res://Sprites/Mario/walk.png" id="11_b574k"]
+[ext_resource type="Texture2D" uid="uid://cvie4w7bm5pko" path="res://Sprites/Mario/Mario_jump.png" id="12_3gdaj"]
+[ext_resource type="Texture2D" uid="uid://pfc111fygdk6" path="res://Sprites/Mario/Death.png" id="13_b574k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4ad4"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kgcjs"]
+resource_name = "Luigi"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Luigi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_sdu0l"]
+resource_name = "Mario_Walk"
+length = 4.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mario-Walk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Mario-Walk:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11, 2242), Vector2(33, 2242)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Mario-Walk:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Piranha_Plant:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.8078214),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Piranha_Plant:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.8333334, 3, 3.9920332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 2264), Vector2(80, 2230), Vector2(80, 2264)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Mario-Jump:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2688998),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Mario-Jump:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2735648, 2.9949756),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Mario-Jump:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2968903, 1.5021534, 1.9593306, 2.500479, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 2242), Vector2(39.245, 2227.23), Vector2(48.66, 2213.375), Vector2(59.435, 2197.335), Vector2(68.83, 2195.995)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Mario_death:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Mario_death:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.9965115),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Mario_death:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(3.0031483, 3.2054825, 3.3985138, 3.6031735, 3.8055077, 4, 4.2015715, 4.40139),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(69, 2196), Vector2(54.95, 2181.59), Vector2(45.595, 2168.095), Vector2(33.14, 2160.325), Vector2(22.515, 2148.755), Vector2(14.195, 2139.455), Vector2(2.055, 2127.58), Vector2(-9.035, 2117.82)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Mario_death:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3.0031483, 4.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 7.330382858376184]
+}
+
+[sub_resource type="Animation" id="Animation_k0d3f"]
+resource_name = "Mario_jump"
+length = 3.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(250, 918), Vector2(254, 918)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Mario_Jump_Right:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Mario_Jump_Right:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(254, 918), Vector2(344, 918)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Mario_Jump_Right:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Mario_Jump_Left:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Mario_Jump_Left:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 1.4, 1.8, 2.1980054, 2.5997765, 3.0029192, 3.4038243, 3.603643),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-25, 918), Vector2(33, 918), Vector2(53, 937), Vector2(82, 967), Vector2(115, 1001), Vector2(134, 1054), Vector2(165.735, 1091.035), Vector2(185.645, 1154.44)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Mario_Jump_Left:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.0029541, 3.603643),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1g7ho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(249.99998, 917.99994)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Mario_Jump_Right:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Mario_Jump_Right:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(254, 918)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Mario_Jump_Right:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Mario_Jump_Left:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Mario_Jump_Left:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-25, 918)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Mario_Jump_Left:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Luigi:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Sparkles6/Sparkles4:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Sparkles6/Sparkles5:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Kiss:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(140, 1372)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Kiss:frame")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Mario-Walk:frame")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Mario-Walk:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, 2215)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Mario-Walk:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Piranha_Plant:frame")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Piranha_Plant:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 2264)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Mario-Jump:frame")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Mario-Jump:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../Mario-Jump:position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39.245, 2227.23)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../Mario_death:frame")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../Mario_death:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("../Mario_death:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(69, 2196)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("../Mario_death:rotation")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ohlw"]
+resource_name = "kiss_peach"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Kiss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(140, 1372), Vector2(140, 1316)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Kiss:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5, 0.9, 1.2666667, 1.6666666, 2.0666666, 2.5, 2.8666666, 3.2666667, 3.5, 3.7, 3.8999999, 4.1000004, 4.3, 4.5, 4.7, 4.9000006, 5.1000004, 5.3, 5.5333333, 5.7405634, 5.973897),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 8, 9, 10, 11, 12, 8, 9, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvj1n"]
+_data = {
+&"Luigi": SubResource("Animation_kgcjs"),
+&"Mario_Walk": SubResource("Animation_sdu0l"),
+&"Mario_jump": SubResource("Animation_k0d3f"),
+&"RESET": SubResource("Animation_1g7ho"),
+&"kiss_peach": SubResource("Animation_4ohlw")
+}
+
+[sub_resource type="Animation" id="Animation_oiyhp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sparkles6/Sparkles:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sparkles6/Sparkles2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkles6/Sparkles3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sparkles6/Sparkles4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sparkles6/Sparkles5:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sb5xt"]
+resource_name = "Sparkles"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sparkles6/Sparkles:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sparkles6/Sparkles2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.7252903e-09, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sparkles6/Sparkles3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-7.450581e-09, 0.13333334, 0.26666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sparkles6/Sparkles4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.7252903e-09, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sparkles6/Sparkles5:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b574k"]
+_data = {
+&"RESET": SubResource("Animation_oiyhp"),
+&"Sparkles": SubResource("Animation_sb5xt")
+}
 
 [node name="ScrollContainer" type="ScrollContainer" node_paths=PackedStringArray("text_node")]
 anchors_preset = 15
@@ -17,7 +791,7 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("1_0x8y4")
 text_node = NodePath("MarginContainer/RichTextLabel")
-credits_time = 200.0
+credits_time = 150.0
 margin_increment = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -140,13 +914,15 @@ text = "[center]
 [font_size=22] [/font_size]
 
 [center]
-[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=32]⭐ OBRIGADO POR JOGAR! ⭐[/font_size][/font]
+[img=96x72]res://Sprites/Credits/Benedito.png[/img] [img=96x72]res://Sprites/Credits/Arthur.jpeg[/img] [img=96x72]res://Sprites/Credits/Marlon.png[/img] [img=96x72]res://Sprites/Credits/Geraldo.png[/img]
+[font_size=8] [/font_size]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=22]EQUIPE DOS SONHOS[/font_size][/font]
 [/center]
 
 [font_size=32] [/font_size]
 
 [center]
-[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]© 2023 — FEITO PARA 320×240[/font_size][/font]
+[font=res://HUD/font/PressStart2P-Regular.ttf][font_size=16]© 2026 — FEITO PARA 320×240[/font_size][/font]
 [/center]
 
 [font_size=80] [/font_size]
@@ -154,3 +930,128 @@ text = "[center]
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Kiss_Peach" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(109, 1387)
+scale = Vector2(3.015, 3.015)
+texture = ExtResource("3_lm48m")
+flip_h = true
+
+[node name="Kiss" type="Sprite2D" parent="MarginContainer"]
+visible = false
+position = Vector2(140, 1372)
+scale = Vector2(2, 2)
+texture = ExtResource("8_i8gny")
+hframes = 13
+
+[node name="Mario_wall" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(249.99998, 917.99994)
+scale = Vector2(3.15, 3.15)
+texture = ExtResource("4_k0d3f")
+
+[node name="Mario_Jump_Right" type="Sprite2D" parent="MarginContainer"]
+visible = false
+position = Vector2(254, 918)
+scale = Vector2(3.15, 3.15)
+texture = ExtResource("5_1g7ho")
+hframes = 8
+frame = 6
+
+[node name="Mario_Jump_Left" type="Sprite2D" parent="MarginContainer"]
+visible = false
+position = Vector2(-25, 918)
+scale = Vector2(3.15, 3.15)
+texture = ExtResource("5_1g7ho")
+hframes = 8
+frame = 6
+
+[node name="Luigi" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(242.00002, 1805)
+scale = Vector2(3, 3)
+texture = ExtResource("6_yvj1n")
+hframes = 2
+
+[node name="Sparkles6" type="Node2D" parent="MarginContainer"]
+position = Vector2(1.5258789e-05, -0.00012207031)
+
+[node name="Sparkles" type="Sprite2D" parent="MarginContainer/Sparkles6"]
+position = Vector2(236.99998, 1755.0002)
+scale = Vector2(2.221322, 2.221322)
+texture = ExtResource("7_i8gny")
+hframes = 3
+
+[node name="Sparkles2" type="Sprite2D" parent="MarginContainer/Sparkles6"]
+position = Vector2(276, 1777.0002)
+scale = Vector2(3, 3)
+texture = ExtResource("7_i8gny")
+hframes = 3
+frame = 2
+
+[node name="Sparkles3" type="Sprite2D" parent="MarginContainer/Sparkles6"]
+position = Vector2(118.999985, 1731.0001)
+scale = Vector2(3, 3)
+texture = ExtResource("7_i8gny")
+hframes = 3
+frame = 2
+
+[node name="Sparkles4" type="Sprite2D" parent="MarginContainer/Sparkles6"]
+position = Vector2(191.99998, 1728.0001)
+scale = Vector2(3, 3)
+texture = ExtResource("7_i8gny")
+hframes = 3
+frame = 2
+
+[node name="Sparkles5" type="Sprite2D" parent="MarginContainer/Sparkles6"]
+position = Vector2(142.99998, 1792.0001)
+scale = Vector2(3, 3)
+texture = ExtResource("7_i8gny")
+hframes = 3
+
+[node name="Piranha_Plant" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(80, 2264)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_oiyhp")
+
+[node name="Pipper" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(82, 2264)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("9_kgcjs")
+
+[node name="Mario-Walk" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(55, 2215)
+texture = ExtResource("11_b574k")
+hframes = 6
+
+[node name="Mario-Jump" type="Sprite2D" parent="MarginContainer"]
+visible = false
+position = Vector2(39.245, 2227.23)
+texture = ExtResource("12_3gdaj")
+
+[node name="Mario_death" type="Sprite2D" parent="MarginContainer"]
+visible = false
+position = Vector2(69, 2196)
+texture = ExtResource("13_b574k")
+hframes = 3
+
+[node name="Timer_Jump" type="Timer" parent="MarginContainer"]
+wait_time = 1.25
+one_shot = true
+
+[node name="Timer_death" type="Timer" parent="MarginContainer"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationSprites" type="AnimationPlayer" parent="MarginContainer"]
+root_node = NodePath("../Mario_wall")
+libraries = {
+&"": SubResource("AnimationLibrary_yvj1n")
+}
+
+[node name="AnimationSparkles" type="AnimationPlayer" parent="MarginContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_b574k")
+}
+
+[connection signal="timeout" from="MarginContainer/Timer_Jump" to="." method="_on_timer_jump_timeout"]
+[connection signal="timeout" from="MarginContainer/Timer_death" to="." method="_on_timer_death_timeout"]
+[connection signal="animation_finished" from="MarginContainer/AnimationSprites" to="." method="_on_animation_sprites_animation_finished"]

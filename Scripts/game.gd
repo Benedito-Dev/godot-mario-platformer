@@ -7,6 +7,8 @@ signal coin_collected(value: int)
 signal score_changed(score: int)
 signal coins_changed(coins: int)
 signal mario_lives_changed(lives: int)
+signal mario_life_gained(lives: int)
+signal level_completed
 signal game_over()
 
 # ========================================
@@ -14,6 +16,7 @@ signal game_over()
 # ========================================
 var score: int = 0
 var coins: int = 0
+var current_zone := "overworld"
 
 # ========================================
 # KONAMI CODE EASTER EGG
@@ -51,6 +54,11 @@ enum PowerUpType {
 	START,
 	ONE_UP_MUSHROOM
 }
+
+# ========================================
+# ZONE SYSTEM 
+# ========================================
+signal zone_changed(zone_type: String)
 
 # ========================================
 # INPUT HANDLING
@@ -94,16 +102,15 @@ func connect_mario_signals():
 	mario.enemy_stomped.connect(_on_mario_enemy_stomped)
 	mario.block_hit.connect(_on_mario_block_hit)
 	# Adicionar mais conexões conforme implementarmos os novos sinais
-
+	
+	#Conectando Sinais do Jogo
+	level_completed.connect(_on_level_completed)
+	
 # ========================================
-# COIN SYSTEM
+# POINTS SYSTEM
 # ========================================
-func collect_coin(value: int):
-	coins += 1
+func collect_points(value: int):
 	score += value
-
-	emit_signal("coin_collected", value)
-	emit_signal("coins_changed", coins)
 	emit_signal("score_changed", score)
 
 # ========================================
@@ -114,7 +121,101 @@ func activate_checkpoint(checkpoint_id: String, position: Vector2):
 		checkpoints_activated.append(checkpoint_id)
 	current_checkpoint_id = checkpoint_id
 	mario_spawn_position = position
+	
+# ========================================
+# Level SYSTEM
+# ========================================
+func _on_level_completed():
+	AudioManager.play_music("stage_clear", false)
 
+func start_castle_walk():
+	print("Andando ate o castelo")
+	mario.is_walk_to_castle = true
+	mario.set_physics_process(true)
+	
+	for sprite in mario.sprites.values():
+		sprite.visible = false
+	mario.sprites.walk.visible = true
+	mario.sprites.walk.flip_h = false
+	mario.anim_mario.play("walk")
+	
+	mario.velocity.x = 55
+	mario.velocity.y = 0
+	
+	var tween = create_tween()
+	
+	# 1. Anda por 3.2 segundos
+	tween.tween_interval(3.2)
+	
+	# 2. Para e muda para idle
+	tween.tween_callback(func():
+		mario.velocity.x = 0
+		mario.anim_mario.stop()
+		mario.sprites.walk.visible = false
+		mario.sprites.idle.visible = true
+	)
+	
+	# 3. Espera um pouco parado
+	tween.tween_interval(0.5)
+	
+	# 4. Muda para victory
+	tween.tween_callback(func():
+		mario.sprites.idle.visible = false
+		mario.sprites.victory.visible = true  # VOCÊ PRECISA ADICIONAR ESTA SPRITE
+	)
+	
+	# 5. Espera na victory
+	tween.tween_interval(1)
+	
+	# 6. Volta a andar
+	tween.tween_callback(func():
+		mario.sprites.victory.visible = false
+		mario.sprites.walk.visible = true
+		mario.anim_mario.play("walk")
+		mario.velocity.x = 55
+	)
+	
+	# 7. Anda mais meio segundo e desaparece
+	tween.tween_interval(0.5)
+	tween.tween_callback(func():
+		mario.visible = false
+		get_tree().change_scene_to_file("res://Scenes/UI/thank_you.tscn")
+	)
+
+# ========================================
+# ZONE MANAGEMENT
+# ========================================
+func change_zone(new_zone: String):
+	if current_zone != new_zone:
+		current_zone = new_zone
+		zone_changed.emit(new_zone)
+		
+		match new_zone:
+			"underground":
+				AudioManager.play_music("Underground_Theme")
+			"overworld":
+				AudioManager.play_music("level1")
+
+func get_current_zone() -> String:
+	return current_zone
+	
+func get_death_y_limit() -> float:
+	match current_zone:
+		"overworld":
+			return 260.0  # Limite do overworld
+		"underground":
+			return 2000.0  # Limite do underground (mais baixo)
+		_:
+			return 600.0  # Padrão
+	
+# ========================================
+# MARIO LIFE SYSTEM
+# ========================================
+func mario_gain_life():
+	mario_lives += 1
+	emit_signal("mario_life_gained", mario_lives)
+	emit_signal("mario_lives_changed", mario_lives)  # Para atualizar HUD também
+	
 # ========================================
 # MARIO MANAGEMENT FUNCTIONS
 # ========================================
@@ -123,19 +224,39 @@ func mario_take_damage(from_enemy: Node2D):
 		return
 	
 	mario_is_invincible = true
-	mario.modulate = Color(1, 1, 1, 0.5)
+	mario.set_visual_state(mario.VisualState.DAMAGE)
+	
+	mario_lives -= 1
+	emit_signal("mario_lives_changed", mario_lives)
+	
+	if mario_lives <= 0:
+		mario_die()
+		return
 	
 	# Knockback
 	var direction: float = sign(mario.global_position.x - from_enemy.global_position.x)
 	mario.velocity.x = direction * 120
 	mario.velocity.y = -200
 	
+	# Flip sprite de dano baseado no knockback
+	mario.sprites.damage.flip_h = direction > 0  # Se knockback vai pra direita
+	
+	# Piscar sprite
+	var blink_tween = create_tween()
+	blink_tween.set_loops(10)  # 10 piscadas em 1 segundo
+	blink_tween.tween_method(_blink_sprite, 0, 1, 0.1)
+	
 	# Timer de invencibilidade
 	var timer := get_tree().create_timer(1.0)
 	timer.timeout.connect(func():
+		blink_tween.kill()
 		mario_is_invincible = false
-		mario.modulate = Color.WHITE
+		mario.visible = true
+		mario.set_visual_state(mario.VisualState.IDLE)
 	)
+	
+func _blink_sprite(value):
+	mario.visible = value < 0.5
 
 func mario_die():
 	if mario_is_dead or mario_is_respawning:
@@ -145,19 +266,39 @@ func mario_die():
 	mario_lives -= 1
 	emit_signal("mario_lives_changed", mario_lives)
 	
+	# Para o Mario e mostra sprite de morte
 	mario.velocity = Vector2.ZERO
+	mario.set_visual_state(mario.VisualState.DIE)
+	
+	AudioManager.pause_music()
 	AudioManager.play_sfx("death")
 	
+	await get_tree().create_timer(0.5).timeout
+	
+	# Desabilita todas as colisões
+	mario.set_collision_mask(0)
+	mario.set_collision_layer(0)
+	
+	# Knockback para cima
+	mario.velocity = Vector2(0, -200)
+	mario.set_physics_process(true)
+	
 	if mario_lives <= 0:
-		await get_tree().create_timer(2.7).timeout  # Aguarda som terminar
+		await get_tree().create_timer(2.3).timeout  # Aguarda som terminar
 		emit_signal("game_over")
+		get_tree().change_scene_to_file("res://Scenes/UI/Game_Over.tscn")
 	else:
-		await get_tree().create_timer(2.7).timeout  # Aguarda som terminar
+		await get_tree().create_timer(2.2).timeout  # Aguarda som terminar
 		mario_respawn()
 
 func mario_respawn():
 	if mario_is_respawning:
 		return
+	
+	AudioManager.despause()
+	
+	mario.set_collision_mask(7)
+	mario.set_collision_layer(1)
 	
 	mario_is_respawning = true
 	mario_is_dead = false
@@ -165,12 +306,21 @@ func mario_respawn():
 	# Teleportar para spawn
 	mario.global_position = mario_spawn_position
 	mario.velocity = Vector2.ZERO
+	mario.set_physics_process(true)
 	mario.set_visual_state(mario.VisualState.IDLE)
 	
 	mario_is_respawning = false
 
 func mario_collect_powerup(powerup_type: PowerUpType):
 	mario_current_powerup = powerup_type
+	
+	if powerup_type == PowerUpType.ONE_UP_MUSHROOM:
+		if mario_lives == 3:
+			score +=300
+			emit_signal("score_changed", score)
+		else:
+			mario_gain_life()
+	
 	print("Mario coletou PowerUp: ", powerup_type)
 
 # ========================================
@@ -182,8 +332,9 @@ func _on_mario_fell_off_world():
 func _on_mario_damage_received(from_enemy: Node2D):
 	mario_take_damage(from_enemy)
 
-func _on_mario_enemy_stomped(enemy: Node2D):
-	score +=200
+func _on_mario_enemy_stomped(enemy):
+	score +=100
+	print("Mais 100 pontos para o Mario")
 	emit_signal("score_changed", score)
 
 func _on_mario_block_hit(block: Node2D):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2i54w68ccsle"]
+[gd_scene load_steps=19 format=3 uid="uid://d2i54w68ccsle"]
 
 [ext_resource type="Texture2D" uid="uid://cn3854gn0s7s" path="res://Sprites/Mario/idle/Mario0.png" id="1_4ycxt"]
 [ext_resource type="Script" uid="uid://cjh7lgps8bfnj" path="res://Scripts/Player/mario.gd" id="1_8lnxb"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cvie4w7bm5pko" path="res://Sprites/Mario/Mario_jump.png" id="4_s40cu"]
 [ext_resource type="Texture2D" uid="uid://dal04jruy1rpa" path="res://Sprites/Mario/run/mario_run.png" id="4_vpon7"]
 [ext_resource type="Texture2D" uid="uid://du8cdpooh7cda" path="res://Sprites/Mario/mario_crouched.png" id="5_n6yd7"]
+[ext_resource type="Texture2D" uid="uid://kotcrwvso1pq" path="res://Sprites/Mario/wall_jump.png" id="7_7bebr"]
+[ext_resource type="Texture2D" uid="uid://pfc111fygdk6" path="res://Sprites/Mario/Death.png" id="7_vpon7"]
+[ext_resource type="Texture2D" uid="uid://3eww6qsjj70a" path="res://Sprites/Mario/Mario_flag_slide.png" id="9_2qkft"]
+[ext_resource type="Texture2D" uid="uid://cbne64un01j4r" path="res://Sprites/Mario/Mario-Win.png" id="10_u88oh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8lnxb"]
 size = Vector2(13.558, 25.8)
@@ -18,31 +22,31 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mario_Walk:hframes")
+tracks/0/path = NodePath("Mario_Walk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mario_Walk:vframes")
+tracks/1/path = NodePath("Mario_Run:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mario_Walk:frame")
+tracks/2/path = NodePath("Mario_Win:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -54,14 +58,67 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mario_Run:frame")
+tracks/3/path = NodePath("Mario_Win:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mario_death:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
 "values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mario_death:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u88oh"]
+resource_name = "die"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mario_death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14166667, 0.3, 0.44166666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mario_death:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
 }
 
 [sub_resource type="Animation" id="Animation_vpon7"]
@@ -88,34 +145,10 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mario_Walk:hframes")
+tracks/0/path = NodePath("Mario_Walk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mario_Walk:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Mario_Walk:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -125,6 +158,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7xow1"]
 _data = {
 &"RESET": SubResource("Animation_n6yd7"),
+&"die": SubResource("Animation_u88oh"),
 &"run": SubResource("Animation_vpon7"),
 &"walk": SubResource("Animation_s40cu")
 }
@@ -163,11 +197,34 @@ frame = 6
 visible = false
 texture = ExtResource("5_n6yd7")
 
+[node name="Mario_Damage" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("7_vpon7")
+hframes = 3
+frame = 2
+
+[node name="Mario_death" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("7_vpon7")
+hframes = 3
+
 [node name="Mario_Turn" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("4_vpon7")
 hframes = 8
 frame = 7
+
+[node name="WALL_SLIDING" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("7_7bebr")
+
+[node name="Mario_Flag_Slide" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("9_2qkft")
+
+[node name="Mario_Win" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("10_u88oh")
 
 [node name="CollisionNormal" type="CollisionShape2D" parent="."]
 visible = false

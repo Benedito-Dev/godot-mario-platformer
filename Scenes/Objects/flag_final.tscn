@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv5i1v5e4pxtq"]
+
+[ext_resource type="Script" uid="uid://tlt1cwqjef37" path="res://Scripts/Objects/flag_final.gd" id="1_83402"]
+[ext_resource type="Texture2D" uid="uid://7at848ikdvbd" path="res://Sprites/Objects/Flag-Finale/haste.png" id="1_eyqqf"]
+[ext_resource type="Texture2D" uid="uid://8hktnle8isr6" path="res://Sprites/Objects/Flag-Finale/flag.png" id="2_83402"]
+
+[sub_resource type="Animation" id="Animation_0x3xy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_if4vv"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10799338, 0.2037611, 0.30360404, 0.4054846),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddwdh"]
+_data = {
+&"RESET": SubResource("Animation_0x3xy"),
+&"idle": SubResource("Animation_if4vv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gatvi"]
+size = Vector2(18, 16)
+
+[node name="Flag-Final" type="Area2D"]
+script = ExtResource("1_83402")
+
+[node name="Haste" type="Sprite2D" parent="."]
+texture = ExtResource("1_eyqqf")
+
+[node name="Flag" type="Sprite2D" parent="."]
+position = Vector2(-10, -62)
+texture = ExtResource("2_83402")
+hframes = 5
+
+[node name="AnimationFlag" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ddwdh")
+}
+speed_scale = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -63)
+shape = SubResource("RectangleShape2D_gatvi")
+
+[node name="SlidePoint" type="Marker2D" parent="."]
+position = Vector2(-8, -52)
+
+[node name="BottomPoint" type="Marker2D" parent="."]
+position = Vector2(-8, 59)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://wohorrppkqb5"]
+
+[ext_resource type="Script" uid="uid://d2flwnwgwiwuy" path="res://Scripts/Enemies/piranha_plant.gd" id="1_5a4ir"]
+[ext_resource type="Texture2D" uid="uid://cfwdlb8qvlndl" path="res://Sprites/Enemies/carnivorous plant.png" id="1_kynf0"]
+
+[sub_resource type="Animation" id="Animation_5a4ir"]
+resource_name = "atack"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piranha_Plant:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_eis7k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piranha_Plant:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_he0tq"]
+_data = {
+&"RESET": SubResource("Animation_eis7k"),
+&"atack": SubResource("Animation_5a4ir")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf3xa"]
+size = Vector2(20, 32)
+
+[node name="PiranhaPlant" type="CharacterBody2D" groups=["enemies", "piranha_plant"]]
+collision_layer = 2
+script = ExtResource("1_5a4ir")
+
+[node name="Piranha_Plant" type="Sprite2D" parent="."]
+texture = ExtResource("1_kynf0")
+hframes = 2
+
+[node name="AnimationPlant" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_he0tq")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nf3xa")
+
+[node name="Stum_Mario_Area" type="Area2D" parent="."]
+
+[node name="Hitbox2" type="CollisionShape2D" parent="Stum_Mario_Area"]
+shape = SubResource("RectangleShape2D_nf3xa")
+
+[connection signal="body_entered" from="Stum_Mario_Area" to="." method="_on_stum_mario_area_body_entered"]
+[connection signal="body_exited" from="Stum_Mario_Area" to="." method="_on_stum_mario_area_body_exited"]

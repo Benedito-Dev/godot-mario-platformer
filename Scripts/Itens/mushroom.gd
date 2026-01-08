@@ -7,7 +7,7 @@ var type = Game.PowerUpType.ONE_UP_MUSHROOM
 @onready var animMushroom = $AnimationMushroom
 
 func _ready():
-	animMushroom.play("jump")
+	animMushroom.play("idle")
 
 func _physics_process(delta):
 	if not is_on_floor():

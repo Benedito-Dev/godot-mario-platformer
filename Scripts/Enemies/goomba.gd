@@ -16,12 +16,20 @@ const SPEED := 20.0
 # ESTADO
 # =======================
 @export var direction := -1  # -1 = esquerda | 1 = direita
+var stomped_already := false  # NOVA FLAG
 
 func _ready() -> void:
 	anim_goomba.play("Walking")
 	_update_flip()
 
 func _physics_process(delta: float) -> void:
+	if stomped_already:  # Se já foi pisado, não se move mais
+		return
+	
+	var distance_to_mario = global_position.distance_to(Game.mario.global_position)
+	
+	if distance_to_mario > 300:  # 300 pixels de distância
+		return
 	_apply_gravity(delta)
 	_move()
 	move_and_slide()
@@ -56,6 +64,10 @@ func _update_flip() -> void:
 # STUM
 # =======================
 func stomped():
+	if stomped_already:  # Evita múltiplas execuções
+		return
+	
+	stomped_already = true
 	AudioManager.play_sfx("kick")
 	Goomba.visible = false
 	GoombaStomped.flip_h = direction > 0

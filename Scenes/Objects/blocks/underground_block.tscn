@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn0s5jx02k511"]
+
+[ext_resource type="Script" uid="uid://cu5asqfmy14sv" path="res://Scripts/Objects/block/block.gd" id="1_5d73x"]
+[ext_resource type="PackedScene" uid="uid://l76jwyoxji8l" path="res://Scenes/Objects/blocks/underground_break_brock.tscn" id="2_nkxjo"]
+[ext_resource type="Texture2D" uid="uid://bcu721w8n5l7j" path="res://Sprites/Objects/brocks/underground_block.png" id="2_pswb5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkxjo"]
+size = Vector2(16, 16)
+
+[node name="Underground_block" type="StaticBody2D" groups=["blocks"]]
+script = ExtResource("1_5d73x")
+piece_scene = ExtResource("2_nkxjo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pswb5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nkxjo")

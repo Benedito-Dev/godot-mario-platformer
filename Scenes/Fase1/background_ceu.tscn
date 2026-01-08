@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmx12c6q8rc3j"]
 
 [ext_resource type="Script" uid="uid://dr384s4o8g1nh" path="res://Scenes/Fase1/background_ceu.gd" id="1_i7ycx"]
-[ext_resource type="Texture2D" uid="uid://chtifmg106ubr" path="res://Sprites/Backgrounds/ceu.png" id="1_ycxa7"]
+[ext_resource type="Texture2D" uid="uid://chtifmg106ubr" path="res://Sprites/Backgrounds/Parallax/ceu.png" id="1_ycxa7"]
 [ext_resource type="Texture2D" uid="uid://dpm5n50w4g06x" path="res://Sprites/Backgrounds/Elements/nuvepiscando.png" id="2_i7ycx"]
 [ext_resource type="Texture2D" uid="uid://btuy1et18g3pe" path="res://Sprites/Backgrounds/Elements/nuvem-dupla.png" id="4_74nuo"]
 

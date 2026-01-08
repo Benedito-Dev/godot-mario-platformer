@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://n4bh8t6t5oef"]
+
+[ext_resource type="FontFile" uid="uid://luc8yfwypftu" path="res://HUD/font/PressStart2P-Regular.ttf" id="1_xfoo3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovg6m"]
+font = ExtResource("1_xfoo3")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Text_Game_Over" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -8.0
+offset_right = 72.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OBRIGADO POR JOGAR"
+label_settings = SubResource("LabelSettings_ovg6m")
+horizontal_alignment = 1
+vertical_alignment = 1
