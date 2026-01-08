@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c045rskfe062l"]
+[gd_scene load_steps=7 format=3 uid="uid://c045rskfe062l"]
 
 [ext_resource type="Texture2D" uid="uid://crve3hs2jocyh" path="res://Sprites/itens/coin.png" id="1_ekgxc"]
-[ext_resource type="Script" uid="uid://cd05ef5qute0i" path="res://Scripts/Itens/coin.gd" id="2_srwov"]
+[ext_resource type="Script" uid="uid://mucgjk4u2mrb" path="res://Scripts/Itens/coin.gd" id="1_srwov"]
 
 [sub_resource type="Animation" id="Animation_mk2m6"]
 length = 0.001
@@ -40,16 +40,27 @@ _data = {
 &"idle": SubResource("Animation_1uvbc")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekgxc"]
+radius = 6.0
+height = 18.0
+
 [node name="Coin" type="Node2D"]
+script = ExtResource("1_srwov")
 
 [node name="Coin" type="Sprite2D" parent="."]
 texture = ExtResource("1_ekgxc")
 hframes = 6
-script = ExtResource("2_srwov")
 
 [node name="Coin_Animator" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_j7gu3")
 }
+speed_scale = 2.5
+
+[node name="Collected" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collected"]
+shape = SubResource("CapsuleShape2D_ekgxc")
 
 [connection signal="animation_finished" from="Coin_Animator" to="Coin" method="_on_coin_animator_animation_finished"]
+[connection signal="body_entered" from="Collected" to="." method="_on_collected_body_entered"]

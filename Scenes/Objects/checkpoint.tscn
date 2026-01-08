@@ -1,23 +1,100 @@
-[gd_scene load_steps=5 format=3 uid="uid://b584owpgo8i0m"]
+[gd_scene load_steps=9 format=3 uid="uid://b584owpgo8i0m"]
 
 [ext_resource type="Script" uid="uid://bip7xhx6wmq3w" path="res://Scripts/Objects/checkpoint.gd" id="1_cwjgy"]
-[ext_resource type="Texture2D" uid="uid://bcjgix8grehdu" path="res://Sprites/Objects/bandeira-bowser.png" id="1_kkv1f"]
-[ext_resource type="Texture2D" uid="uid://brr2dl655fb5c" path="res://Sprites/Objects/bandeira.png" id="2_cwjgy"]
+[ext_resource type="Texture2D" uid="uid://clvv0bfhn0xfd" path="res://Sprites/Objects/Checkpoints/Mario-Flag.png" id="3_cwjgy"]
+[ext_resource type="Texture2D" uid="uid://csal7d6betm5p" path="res://Sprites/Objects/Checkpoints/Bowser-Flag.png" id="3_hqqqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkv1f"]
 size = Vector2(24, 24)
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="Animation" id="Animation_hqqqc"]
+resource_name = "Mario-Flag"
+length = 1.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag-Mario:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10187605, 0.2014713, 0.30106655, 0.40142205, 0.5010173, 0.6, 0.70185035, 0.8014456, 0.90028054, 1.0007805, 1.1010511, 1.2014066, 1.3010018, 1.4009513, 1.4997863, 1.6009021, 1.7000324, 1.8026687),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_h3abi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag-Mario:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flag-Bowser:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gfmjq"]
+resource_name = "Bowser-Flag"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag-Bowser:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.004075222, 0.10391816, 0.20579872, 0.30564165, 0.40140936, 0.5073651, 0.6072081, 0.7029758, 0.7967059, 0.9, 1.003581, 1.099778, 1.2017186, 1.3017634, 1.4, 1.5026174, 1.6026623, 1.7036692),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfmjq"]
+_data = {
+&"Bowser-Flag": SubResource("Animation_gfmjq"),
+&"Mario-Flag": SubResource("Animation_hqqqc"),
+&"RESET": SubResource("Animation_h3abi")
+}
+
+[node name="Checkpoint" type="Area2D"]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_cwjgy")
 
-[node name="Flag-Bowser" type="Sprite2D" parent="."]
-texture = ExtResource("1_kkv1f")
-
 [node name="Flag-Mario" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_cwjgy")
+texture = ExtResource("3_cwjgy")
+hframes = 19
+
+[node name="Flag-Bowser" type="Sprite2D" parent="."]
+texture = ExtResource("3_hqqqc")
+hframes = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_kkv1f")
+
+[node name="AnimationFlag" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gfmjq")
+}
+speed_scale = 2.5

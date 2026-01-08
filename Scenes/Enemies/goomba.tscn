@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cit33gs6tqceb"]
 
 [ext_resource type="Script" uid="uid://c6r3igah2ln5v" path="res://Scripts/Enemies/goomba.gd" id="1_kh66b"]
-[ext_resource type="Texture2D" uid="uid://bpowiylchc344" path="res://Sprites/Enemies/goomba-1.png" id="2_kh66b"]
-[ext_resource type="Texture2D" uid="uid://who3cc58xsa3" path="res://Sprites/Enemies/goomabmerreu.png" id="3_ei57l"]
+[ext_resource type="Texture2D" uid="uid://bpowiylchc344" path="res://Sprites/Enemies/goombba/goomba.png" id="2_kh66b"]
+[ext_resource type="Texture2D" uid="uid://dtqnkqepedaie" path="res://Sprites/Enemies/goombba/goomba-stomped.png" id="3_87vcy"]
 
 [sub_resource type="Animation" id="Animation_kh66b"]
 length = 0.001
@@ -33,7 +33,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_gb1sd"]
 resource_name = "Stomp"
-length = 0.15
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,7 +41,7 @@ tracks/0/path = NodePath("../Stomped:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
@@ -85,7 +85,7 @@ hframes = 13
 
 [node name="Stomped" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("3_ei57l")
+texture = ExtResource("3_87vcy")
 hframes = 3
 
 [node name="AnimationGoomba" type="AnimationPlayer" parent="."]
